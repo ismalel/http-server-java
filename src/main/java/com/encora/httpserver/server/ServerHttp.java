@@ -8,16 +8,15 @@ import java.net.InetSocketAddress;
 
 public class ServerHttp {
 
-    private int PORT;
-    private HttpServer server;
+    private final int PORT;
 
     public ServerHttp(int PORT) {
         this.PORT = PORT;
     }
 
     public void start() throws IOException {
-        server = HttpServer.create(new InetSocketAddress(PORT), 0);
-        server.createContext("/applications/myapp", new BasicHandler());
+        HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
+        server.createContext("/api", new BasicHandler());
         server.setExecutor(null); // creates a default executor
         server.start();
         System.out.println("Server running on port: " + PORT);
