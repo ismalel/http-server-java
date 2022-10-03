@@ -7,8 +7,6 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.InputStream;
 
 public interface Handler extends HttpHandler {
-
-    public String readRequest(InputStream inputStream);
     public void getHandler(HttpExchange exchange);
     public void postHandler(HttpExchange exchange);
     public void putHandler(HttpExchange exchange);

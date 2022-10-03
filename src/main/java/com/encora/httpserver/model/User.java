@@ -1,4 +1,4 @@
-package com.encora.httpserver.domain.user;
+package com.encora.httpserver.model;
 
 public class User {
     private String id;

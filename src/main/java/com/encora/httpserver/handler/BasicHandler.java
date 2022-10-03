@@ -12,6 +12,7 @@ public class BasicHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+        System.out.println(exchange.getRequestMethod());
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource("index.html").getFile());
         exchange.sendResponseHeaders(200,file.length());
