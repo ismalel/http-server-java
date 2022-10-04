@@ -39,10 +39,10 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
+        return "{\n" +
+                "\t\"id\" : \"" + id + "\",\n" +
+                "\t\"name\" : \"" + name + "\",\n" +
+                "\t\"password\" : \"" + password + "\"\n" +
                 '}';
     }
 }

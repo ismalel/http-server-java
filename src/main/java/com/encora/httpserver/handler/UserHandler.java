@@ -1,39 +1,42 @@
 package com.encora.httpserver.handler;
 
+import com.encora.httpserver.controller.Controller;
+import com.encora.httpserver.controller.UserController;
 import com.encora.httpserver.model.User;
 import com.encora.httpserver.service.UserService;
 import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
 
-public class UserHandler implements Handler {
+public class UserHandler implements HttpHandler {
 
-    private final UserService service;
+    private final UserController controller;
 
-    public UserHandler (UserService service) {
-        this.service = service;
+    public UserHandler (UserController controller) {
+        this.controller = controller;
     }
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         switch (exchange.getRequestMethod()) {
             case "GET":
-                getHandler(exchange);
+                controller.getHandler(exchange);
                 break;
             case "POST":
-                postHandler(exchange);
+                controller.postHandler(exchange);
                 break;
             case "PUT":
-                putHandler(exchange);
+                controller.putHandler(exchange);
                 break;
             case "DELETE":
-                deleteHandler(exchange);
+                controller.deleteHandler(exchange);
                 break;
             case "PATCH":
-                patchHandler(exchange);
+                controller.patchHandler(exchange);
                 break;
             default:
                 System.out.println("Method not allowed : " + exchange.getRequestMethod());
@@ -41,48 +44,6 @@ public class UserHandler implements Handler {
 
     }
 
-    @Override
-    public void getHandler(HttpExchange exchange) {
-        System.out.println("asd" + exchange.getRequestURI().getPath());
-        List<User> users = service.getUsers();
-        users.add(new User("1123123", "ismael", "666"));
-        try {
-            if (users.isEmpty()) {
-                String response = "There are not users registered yet";
-                exchange.sendResponseHeaders(200, response.getBytes().length);
-                OutputStream os = exchange.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
-            } else {
-                String list = users.toString();
-                exchange.sendResponseHeaders(200, list.getBytes().length);
-                OutputStream os = exchange.getResponseBody();
-                os.write(list.getBytes());
-                os.close();
-            }
-        } catch (IOException e) {
-            System.out.println("IOException at UserHandler:getHandler : " + e.getMessage());
-        }
-    }
 
-    @Override
-    public void postHandler(HttpExchange exchange) {
-
-    }
-
-    @Override
-    public void putHandler(HttpExchange exchange) {
-
-    }
-
-    @Override
-    public void patchHandler(HttpExchange exchange) {
-
-    }
-
-    @Override
-    public void deleteHandler(HttpExchange exchange) {
-
-    }
 
 }

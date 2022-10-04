@@ -1,13 +1,12 @@
-package com.encora.httpserver.handler;
+package com.encora.httpserver.controller;
 
-import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
-import java.io.InputStream;
+import java.io.IOException;
 
-public interface Handler extends HttpHandler {
-    public void getHandler(HttpExchange exchange);
+public interface Controller {
+    public void getHandler(HttpExchange exchange) throws IOException;
     public void postHandler(HttpExchange exchange);
     public void putHandler(HttpExchange exchange);
     public void patchHandler(HttpExchange exchange);
