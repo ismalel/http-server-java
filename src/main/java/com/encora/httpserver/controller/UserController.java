@@ -24,11 +24,11 @@ public class UserController implements Controller {
     @Override
     public void getHandler(HttpExchange exchange) throws IOException {
         Map<String, List<String>> params = HttpUtils.splitQuery(exchange);
-
+        service.create(new User(1L,"Ismael","123"));
         if (params.isEmpty()) {
-            sendResponse(exchange, 200, HttpUtils.userListToJSON(service.getUsers()));
+            sendResponse(exchange, 200, "");
         } else {
-            User user = service.getUser(params.get("id").toString());
+            User user = new User();
             if(user != null) {
                 sendResponse(exchange, 200, user.toString());
             } else {

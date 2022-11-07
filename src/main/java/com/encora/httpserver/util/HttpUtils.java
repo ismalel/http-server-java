@@ -20,7 +20,6 @@ public class HttpUtils {
         if (query == null || "".equals(query)) {
             return Collections.emptyMap();
         }
-
         return Pattern.compile("&").splitAsStream(query)
                 .map(s -> Arrays.copyOf(s.split("="), 2))
                 .collect(groupingBy(s -> decode(s[0]), mapping(s -> decode(s[1]), toList())));
@@ -33,14 +32,5 @@ public class HttpUtils {
         } catch (final UnsupportedEncodingException e) {
             throw new RuntimeException("UTF-8 is a required encoding", e);
         }
-    }
-
-    public static String userListToJSON(List<User> userList) {
-       StringBuilder json = new StringBuilder("[\n");
-       for (User user : userList) {
-           json.append(user.toString()).append("\n");
-       }
-       json.append(']');
-       return json.toString();
     }
 }

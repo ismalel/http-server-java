@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import static com.encora.httpserver.config.Configuration.getUserController;
-import static com.encora.httpserver.config.Configuration.getUserService;
 
 public class ServerHttp {
 

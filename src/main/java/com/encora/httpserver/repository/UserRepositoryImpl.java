@@ -4,6 +4,7 @@ import com.encora.httpserver.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 public class UserRepositoryImpl implements UserRepository {
@@ -11,8 +12,8 @@ public class UserRepositoryImpl implements UserRepository {
     private static final List<User> USERS_DB = new ArrayList<>();
 
     @Override
-    public String createUser(User user) {
-        String id = UUID.randomUUID().toString();
+    public Long createUser(User user) {
+        Long id = UUID.randomUUID().getMostSignificantBits();
         user.setId(id);
 
         USERS_DB.add(user);
@@ -21,9 +22,9 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User findUserById(String id) {
+    public User findUserById(Long id) {
         for (User u : USERS_DB) {
-            if (u.getId().equals(id)) {
+            if (Objects.equals(u.getId(), id)) {
                 return u;
             }
         }

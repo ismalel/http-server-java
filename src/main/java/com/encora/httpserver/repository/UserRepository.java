@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserRepository {
 
-    String createUser(User user);
-    User findUserById(String id);
+    Long createUser(User user);
+    User findUserById(Long id);
     List<User> getUsers();
 }

@@ -13,11 +13,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public String create(User user) {
+    public Long create(User user) {
         return userRepository.createUser(user);
     }
 
-    public User getUser(String id) {
+    public User getUser(Long id) {
         return userRepository.findUserById(id);
     }
 

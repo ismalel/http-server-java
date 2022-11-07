@@ -1,21 +1,17 @@
 package com.encora.httpserver.model;
 
-import com.encora.httpserver.util.annotation.JsonField;
 
-public class User {
-    @JsonField(fieldName = "id")
+public class Cat {
     private Long id;
-    @JsonField(fieldName = "name")
     private String name;
-    @JsonField(fieldName = "password")
-    private String password;
+    private String breed;
 
-    public User() {}
+    public Cat() {}
 
-    public User(Long id, String name, String password) {
+    public Cat(Long id, String name, String password) {
         this.id = id;
         this.name = name;
-        this.password = password;
+        this.breed = password;
     }
 
     public Long getId() {
@@ -34,20 +30,20 @@ public class User {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getBreed() {
+        return breed;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Cat{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
+                ", breed='" + breed + '\'' +
                 '}';
     }
 }
