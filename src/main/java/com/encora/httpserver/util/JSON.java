@@ -10,8 +10,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class JSON {
+
+    private static Logger LOG = Logger.getLogger("JSON");
 
     public static String toJSON(Object obj) throws IllegalAccessException {
         Class<?> clase = obj.getClass();
@@ -64,17 +67,12 @@ public class JSON {
     public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
         String jsonUser = "{\"id\" :1406861,\"name\" : \"Javier\",\"password\" : \"yF&u7z?jfZ)WHC3\"}";
         String jsonCat = "{\"id\" :000023,\"name\" : \"Bola de Nieve\",\"breed\" : \"Europeo\"}";
-        List<User> users = new ArrayList<>();
-        users.add(new User(14054541L, "Ismael", "13213dsaf"));
-        users.add(new User(14054542L, "Thannia", "1aew243"));
-        users.add(new User(14054543L, "Yander", "asdasdasdf"));
-
 
         User a = JSON.fromJSON(jsonUser, User.class);
         Cat c = JSON.fromJSON(jsonCat, Cat.class);
         String jsonx = JSON.toJSON(a);
-        System.out.println(jsonx);
-        System.out.println("User: " + JSON.fromJSON(jsonx, User.class));
+        LOG.info(jsonx);
+        LOG.info("User: " + JSON.fromJSON(jsonx, User.class));
 
     }
 }
