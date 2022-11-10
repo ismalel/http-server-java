@@ -29,10 +29,8 @@ public final class ApplicationContext {
                 if (c.isAnnotationPresent(Controller.class) || c.isAnnotationPresent(Service.class) || c.isAnnotationPresent(Repository.class)) {
                     Object object = null;
                     try {
-
                         Constructor<?> objectConstructor = Class.forName(c.getName()).getConstructor(null);
                         object = objectConstructor.newInstance(null);
-
                     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                              InvocationTargetException | NoSuchMethodException ex) {
                         FrameworkLogger.error("Exception: " + ex.getMessage());
@@ -116,9 +114,7 @@ public final class ApplicationContext {
                     methods.put(key, m);
                 }
             }
-
         }
         return methods;
     }
-
 }

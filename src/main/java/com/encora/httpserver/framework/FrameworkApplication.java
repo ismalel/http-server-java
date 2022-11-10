@@ -17,7 +17,6 @@ public class FrameworkApplication {
 
         ApplicationContext.init(packages);
 
-
         ServerHttp serverHttp = new ServerHttp(8080);
         try {
             serverHttp.start();

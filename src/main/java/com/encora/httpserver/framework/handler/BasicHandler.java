@@ -7,12 +7,9 @@ import com.encora.httpserver.framework.util.RequestMethod;
 import com.encora.httpserver.model.User;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.Map;
 
 public class BasicHandler implements HttpHandler {
@@ -59,9 +56,11 @@ public class BasicHandler implements HttpHandler {
                     }
                     br.close();
                     isr.close();
+
                     Object parameter = JSON.fromJSON(buf.toString(), User.class); // HOW TO GET MODEL TYPE CLASS
                     Object object = method.invoke(controller, parameter);
                     String json = JSON.toJSON(object);
+
                     exchange.sendResponseHeaders(200, json.length());
                     OutputStream os = exchange.getResponseBody();
                     os.write(json.getBytes());
@@ -71,7 +70,6 @@ public class BasicHandler implements HttpHandler {
                 } catch (Exception e) {
                     FrameworkLogger.error("Exception: " + e.getMessage());
                 }
-
                 break;
         }
     }
