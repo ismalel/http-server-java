@@ -1,6 +1,6 @@
 package com.encora.httpserver.model;
 
-import com.encora.httpserver.util.annotation.JsonField;
+import com.encora.httpserver.framework.annotation.JsonField;
 
 public class User {
     @JsonField(fieldName = "id")

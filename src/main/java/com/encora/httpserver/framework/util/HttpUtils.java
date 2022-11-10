@@ -1,4 +1,4 @@
-package com.encora.httpserver.util;
+package com.encora.httpserver.framework.util;
 
 import com.encora.httpserver.model.User;
 import com.sun.net.httpserver.HttpExchange;

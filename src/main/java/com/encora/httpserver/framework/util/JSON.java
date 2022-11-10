@@ -1,15 +1,12 @@
-package com.encora.httpserver.util;
+package com.encora.httpserver.framework.util;
 
 import com.encora.httpserver.model.Cat;
 import com.encora.httpserver.model.User;
-import com.encora.httpserver.util.annotation.JsonField;
+import com.encora.httpserver.framework.annotation.JsonField;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class JSON {
@@ -27,7 +24,7 @@ public class JSON {
             JsonField jsonField = campos[i].getAnnotation(JsonField.class);
             value = campos[i].get(obj).toString();
             if (campos[i].getType().getSimpleName().equals("String")) {
-                value =  value + "\"";
+                value = "\"" +  value + "\"";
             }
             json.append("\"" + jsonField.fieldName() + "\":" + value  + (i < campos.length - 1 ? "," : ""));
         }

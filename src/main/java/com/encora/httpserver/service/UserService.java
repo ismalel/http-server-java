@@ -1,27 +1,26 @@
 package com.encora.httpserver.service;
 
+import com.encora.httpserver.framework.annotation.Service;
 import com.encora.httpserver.model.User;
 import com.encora.httpserver.repository.UserRepository;
 
 import java.util.List;
 
+@Service
 public class UserService {
 
-    private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    private final UserRepository userRepository = new UserRepository();
 
-    public Long create(User user) {
-        return userRepository.createUser(user);
+    public User create(User user) {
+        return userRepository.save(user);
     }
 
     public User getUser(Long id) {
-        return userRepository.findUserById(id);
+        return userRepository.getById(id);
     }
 
     public List<User> getUsers() {
-        return userRepository.getUsers();
+        return userRepository.findAll();
     }
 }
