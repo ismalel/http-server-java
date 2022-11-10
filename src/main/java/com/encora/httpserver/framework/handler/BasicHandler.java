@@ -61,6 +61,12 @@ public class BasicHandler implements HttpHandler {
                     isr.close();
                     Object parameter = JSON.fromJSON(buf.toString(), User.class); // HOW TO GET MODEL TYPE CLASS
                     Object object = method.invoke(controller, parameter);
+                    String json = JSON.toJSON(object);
+                    exchange.sendResponseHeaders(200, json.length());
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(json.getBytes());
+                    os.close();
+                    FrameworkLogger.info(json);
                     FrameworkLogger.info("HAndler: " + object.toString());
                 } catch (Exception e) {
                     FrameworkLogger.error("Exception: " + e.getMessage());

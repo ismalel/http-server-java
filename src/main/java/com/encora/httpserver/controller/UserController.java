@@ -19,13 +19,13 @@ public class UserController {
 
 
     //Controller methods
-    @GetMapping(path = "/getUser")
+    @GetMapping(path = "/user")
     public User user() {
         User user = new User(1230L, "Ismael", "yF&u7z?jfZ)WHC3");
         return user;
     }
 
-    @PostMapping(path = "/postUser")
+    @PostMapping(path = "/user")
     public User postUser(User user){
         FrameworkLogger.info("UserController: " + user.toString());
         return user;
